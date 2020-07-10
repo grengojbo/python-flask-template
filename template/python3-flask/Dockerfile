@@ -7,7 +7,7 @@ RUN chmod +x /usr/bin/fwatchdog
 ARG ADDITIONAL_PACKAGE
 # Alternatively use ADD https:// (which will not be cached by Docker builder)
 
-RUN apk --no-cache add openssl-dev ${ADDITIONAL_PACKAGE}
+RUN apk --no-cache add openssl-dev apache2-utils curl vim ${ADDITIONAL_PACKAGE}
 
 # Add non root user
 RUN addgroup -S app && adduser app -S -G app
@@ -21,6 +21,7 @@ WORKDIR /home/app/
 
 COPY index.py           .
 COPY requirements.txt   .
+COPY gconfig.py         .
 
 USER root
 RUN pip install -r requirements.txt
@@ -40,12 +41,14 @@ WORKDIR /home/app/
 USER root
 
 COPY function   function
+
 RUN chown -R app:app ./
 
 #configure WSGI server and healthcheck
 USER app
 
-ENV fprocess="python index.py"
+# ENV fprocess="python index.py"
+ENV fprocess="gunicorn -c gconfig.py index:app"
 
 ENV cgi_headers="true"
 ENV mode="http"
