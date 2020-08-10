@@ -41,6 +41,7 @@ WORKDIR /home/app/
 USER root
 
 COPY function   function
+
 RUN chown -R app:app ./
 
 #configure WSGI server and healthcheck
