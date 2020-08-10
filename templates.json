@@ -1,0 +1,74 @@
+[
+    {
+        "template": "python27-flask",
+        "platform": "x86_64",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 2.7 Flask template",
+        "repo": "https://github.com/topsport-com-au/python-flask-template",
+        "official": "true"
+    },
+    {
+        "template": "python3-flask-armhf",
+        "platform": "armhf",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 3.6 Flask armhf template",
+        "repo": "https://github.com/topsport-com-au/python-flask-template",
+        "official": "true"
+    },
+    {
+        "template": "python3-flask",
+        "platform": "x86_64",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 3.8 Flask template",
+        "repo": "https://github.com/topsport-com-au/python-flask-template",
+        "official": "true"
+    },
+    {
+        "template": "python3-flask-debian",
+        "platform": "x86_64",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 3.8 Flask template based on Debian",
+        "repo": "https://github.com/topsport-com-au/python-flask-template",
+        "official": "true"
+    },
+    {
+        "template": "python3-http",
+        "platform": "x86_64",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 3.8 with Flask and HTTP",
+        "repo": "https://github.com/topsport-com-au/python-flask-template",
+        "official": "true"
+    },
+    {
+        "template": "python3-http-armhf",
+        "platform": "armhf",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 3.6 with Flask and HTTP for ARMHF",
+        "repo": "https://github.com/topsport-com-au/python-flask-template",
+        "official": "true"
+    },
+    {
+        "template": "python3-http-debian",
+        "platform": "x86_64",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 3.8 with Flask and HTTP based on Debian",
+        "repo": "https://github.com/topsport-com-au/python-flask-template",
+        "official": "true"
+    },
+    {
+        "template": "topsport-flask-standard",
+        "platform": "x86_64",
+        "language": "Python",
+        "source": "topsport-com-au",
+        "description": "Python 3.8 with Flask and HTTP based on Debian",
+        "repo": "https://github.com/topsport-com-au/topsport-flask-standard",
+        "official": "false"
+    }
+]
