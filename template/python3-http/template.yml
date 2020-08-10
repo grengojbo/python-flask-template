@@ -12,3 +12,19 @@ build_options:
       - musl-dev
       - libffi-dev
       - git
+  - name: numpy
+    packages:
+      - gcc
+      - gfortran
+      - python
+      - python-dev
+      - py-pip
+      - build-base
+      - py3-numpy
+      - wget
+      - freetype-dev
+      - libpng-dev
+      - openblas-dev
+  - name: scipy
+    packages:
+      - py3-scipy
