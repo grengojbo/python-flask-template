@@ -14,8 +14,8 @@ echo $PASSWORD | faas-cli login -s  --gateway <OPENFAAS GATEWAY URL> -u admin
 ```
 
 ```shell
-faas-cli template pull https://github.com/openfaas-incubator/python-flask-template
-faas-cli new --lang python3-flask-debian wifi-clickhouse -g <OPENFAAS GATEWAY URL> --cpu-request 100m --memory-request 20Mi
+faas-cli template pull https://github.com/grengojbo/python-flask-template
+faas-cli new --lang python3-flask-debian <FUNCTION NAME> -g <OPENFAAS GATEWAY URL> --cpu-request 100m --memory-request 20Mi
 ```
 
 ## Добавление секрета
