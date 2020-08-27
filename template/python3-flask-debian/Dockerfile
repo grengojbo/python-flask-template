@@ -1,4 +1,4 @@
-FROM openfaas/of-watchdog:0.7.7 as watchdog
+FROM openfaas/of-watchdog:0.8.0 as watchdog
 FROM python:3.7-slim-buster
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
@@ -7,7 +7,7 @@ RUN chmod +x /usr/bin/fwatchdog
 ARG ADDITIONAL_PACKAGE
 # Alternatively use ADD https:// (which will not be cached by Docker builder)
 
-RUN apt-get -qy update && apt-get -qy install gcc make ${ADDITIONAL_PACKAGE}
+RUN apt-get -qy update && apt-get -qy install gcc make apt-utils ${ADDITIONAL_PACKAGE}
 
 # Add non root user
 RUN addgroup --system app && adduser app --system --ingroup app
@@ -16,6 +16,16 @@ RUN chown app /home/app
 USER app
 
 ENV PATH=$PATH:/home/app/.local/bin
+#configure WSGI server and healthcheck
+ENV fprocess="python index.py"
+
+ENV cgi_headers="true"
+ENV mode="http"
+ENV upstream_url="http://127.0.0.1:5000"
+
+HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
+
+CMD ["fwatchdog"]
 
 WORKDIR /home/app/
 
@@ -39,18 +49,9 @@ WORKDIR /home/app/
 #install function code
 USER root
 
-COPY function   function
 RUN chown -R app:app ./
 
-#configure WSGI server and healthcheck
+COPY function   function
+RUN chown -R app:app ./function
+
 USER app
-
-ENV fprocess="python index.py"
-
-ENV cgi_headers="true"
-ENV mode="http"
-ENV upstream_url="http://127.0.0.1:5000"
-
-HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
-
-CMD ["fwatchdog"]

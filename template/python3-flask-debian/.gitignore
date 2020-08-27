@@ -1,0 +1,4 @@
+#/template/*
+#!template/python3-flask-debian
+build
+.vscode

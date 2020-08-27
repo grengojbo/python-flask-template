@@ -1,0 +1,32 @@
+version: 1.0
+provider:
+  name: openfaas
+# configuration:
+#   templates:
+#     - name: golang-http
+#       source: https://github.com/openfaas-incubator/golang-http-template
+
+functions:
+  wifi-clickhouse:
+    lang: python3-flask-debian
+    # annotations:
+    #   topic: cron-function
+    #   schedule: "0 */1 * * *"
+    #   linkerd.io/inject: disable
+    #   fluxcd.io/ignore: "true"
+    # secrets:
+    #   - secret-clickhouse
+    environment:
+      FLASK_APP: app
+      FLASK_DEBUG: 1
+      FLASK_ENV: development
+      # LOG_LEVEL: INFO
+      LOG_LEVEL: DEBUG 
+      # https://github.com/openfaas/faas/tree/master/watchdog
+      write_debug: true
+      combine_output: false
+      read_timeout: 60s
+      write_timeout: 3000s
+      exec_timeout: 0
+    # build_options:
+    #   - ca-certificates
