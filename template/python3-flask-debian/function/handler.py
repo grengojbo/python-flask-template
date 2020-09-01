@@ -36,6 +36,8 @@ def handle(req):
     Args:
         req (str): request body
     """
+    text = ""
+    status = 404
 
     logging.debug("Start Query %s", req)
     start = time.time()
@@ -47,9 +49,11 @@ def handle(req):
 
     # TODO: remove next line
     time.sleep(10)  # Sleeping for ten second
+    text = req
+    status = 200
 
     logging.debug(
         "Query completed. Total time taken %s", get_duration(start)
     )
 
-    return req
+    return '{} {}'.format(text, status)
